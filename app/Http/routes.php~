@@ -1,0 +1,47 @@
+<?php
+
+Route::get('/', function (){ return view('mainpage'); });
+
+Route::get('authenticate', function (){ return view('auth'); });
+
+Route::get('register', function (){ return view('register'); });
+
+Route::get('login', function (){ return view('login'); });
+
+Route::get('enter', function (){ return view('login'); });
+
+Route::post('add_user', ['before' => 'csrf','uses' => 'Auth\AuthController@register_and_login'] );
+
+Route::post('login_user', ['before' => 'csrf','uses' => 'Auth\AuthController@check_and_login'] );
+
+
+/*Route::post('user/store',function (){
+	$params = ['login','password','first_name','last_name','email','birth_date','sex','age','city','telephone','join_date'];
+	$values='';
+	for($i=0;$i<11;$i++) $values.=$i!=11 ? $request->input($params[$i]).',':$request->input($params[$i]);
+	print_r($values);
+	$strin='INSERT INTO arunz.users (login,password,first_name,last_name,email,birth_date,sex,age,city,telephone,join_date)
+	VALUES('.explode(',',$values).')';
+	print_r($strin);
+        DB::insert('INSERT INTO arunz.users (login,password,first_name,last_name,email,birth_date,sex,age,city,telephone,join_date)
+	VALUES('.explode(',',$values).')');
+	return Response::json(array('error' => false,'is_add' => '$strin'),200);
+});*/
+
+Route::get('user/{id}','UserController@show')->where(['id'=>'[0-9]+']);
+
+Route::resource('user', 'UserController');
+
+Route::get('logout', 'Auth\AuthController@logout' );
+
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::get('tournaments', function ()    {
+        	return view('user.tournament');
+	});
+
+
+    	Route::get('user/profile', function () {
+        	// Uses Auth Middleware
+    	});
+});

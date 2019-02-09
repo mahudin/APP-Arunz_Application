@@ -1,0 +1,76 @@
+.violet_text {
+    line-height:45pt;
+    font-family:"Montserrat Hairline", sans-serif;
+    color: 	#673ab7 !important;
+    display:inline;
+}
+
+.normal_text {
+    line-height:45pt;
+    font-family:"Montserrat Hairline", sans-serif;
+    display:inline;
+}
+
+.marathon_tlo {
+    background-color: #F8F8F8;
+    height:250px;
+    max-height:600px;
+}
+
+#naglowek{
+    margin-bottom:25px;
+    margin-top:-25px;
+}
+
+#wydarzenia{
+    min-width:392px;
+}
+
+.szczegoly {
+    /*border-color:#673ab7;
+    border-style:solid;
+    border-width: 1px;*/
+    margin-left:30%;
+    color:#673ab7;
+    background:none;
+    padding:0px;
+    font-size:12px;
+}
+
+.biegaczek{
+    margin-left:5%;
+    width:60%;
+}
+
+@media (max-width:468px) {
+    #naglowek{
+        margin-top:40px;
+    }
+    div{
+        font-size:9pt!important;
+    }
+    h3{
+
+        font-size:14pt!important;
+    }
+    h4{
+        font-weight: bold;
+        font-size:10pt!important;
+    }
+    p{
+        font-size:10pt!important;
+    }
+    #wydarzenia{
+        min-width:320px;
+    }
+    .biegaczek{
+        margin-left:5%;
+        width:90%;
+    }
+    .panel-body{
+        padding: 0px!important;
+    }
+    .pasek{
+        border-style:none!important;
+    }
+}

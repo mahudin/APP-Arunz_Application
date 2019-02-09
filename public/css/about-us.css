@@ -1,0 +1,268 @@
+
+p{
+    font-family: 'Open Sans'!important;
+}
+/*
+.row{
+    margin-left:0px!important;
+    margin-right:0px!important;
+}*/
+
+.panel-body{
+    padding:4px!important;
+}
+
+.zyskasz {
+   /* min-width: 102%;*/
+    background-color: #F8F8F8;
+    padding-bottom: 45px;
+}
+
+.zyskasz .tekst_glowny{
+    text-align:center;
+}
+
+.zyskasz p {
+    text-align:center;
+    font-size:13px;
+}
+
+.zyskasz2 {
+   /* min-width: 102%;*/
+    padding-bottom:45px;
+    background-color: #F8F8F8;
+    margin-bottom: 45px;
+}
+
+.zyskasz2 .tekst_glowny{
+    text-align:center;
+}
+
+.zyskasz2 p {
+    text-align:center;
+    font-size:13px;
+}
+
+.kroki_kolka {
+   /* min-width: 102%;*/
+    font-size:13px;
+    text-align:center;
+    background-color: white;
+    margin-bottom:25px;
+}
+
+.kroki_kolka p {
+    font-size:13px!important;
+}
+
+#koleczka {
+    margin:0 auto;
+    text-align:center;
+}
+
+.krok_kolko {
+    text-align:center;
+    font-size:13px;
+}
+
+.kolko{
+    text-align:center;
+    margin:0 auto;
+    left:30%;
+    margin-bottom:20px;
+    margin-top:40px;
+}
+
+.strzalka_rejestracja {
+    display:inline-block;
+    width:10%;
+}
+
+.il p{
+    /*font-family:"Montserrat Hairline", sans-serif;*/
+    font-family:'Open Sans'!important;
+    opacity: 0.7;
+}
+
+h4{
+    font-family:"Montserrat", sans-serif;
+    color: 	#673ab7 !important;
+    font-weight:bold;
+}
+
+.violet_number {
+    margin-bottom:5px;
+    font-size:35pt;
+    line-height:35pt;
+    letter-spacing:0pt;
+    font-family:"Montserrat", sans-serif;
+    color: 	#673ab7 !important;
+    display:inline-block;
+}
+
+.normal_text {
+    font-size: 35pt;
+    line-height: 35pt;
+    font-weight: 100;
+    font-family:"Montserrat", sans-serif;
+}
+
+.violet_text {
+    font-size:40pt;
+    line-height:45pt;
+    letter-spacing:3pt;
+    font-family:"Montserrat Hairline", sans-serif;
+    font-weight: 800;
+    color: 	#673ab7 !important;
+    display:inline;
+}
+
+#wskaznik_brzuch_dolny {
+    display: block;
+    position:relative;
+    top: 16px;
+    z-index: 40;
+}
+
+#wskaznik_brzuch_dolny img {
+    -ms-transform: rotate(6deg); /* IE 9 */
+    -webkit-transform: rotate(6deg); /* Safari */
+    transform: rotate(-84deg);
+    width:300%;
+}
+
+#wskaznik_brzuch_gorny {
+    display: block;
+    left: 20px;
+    position:relative;
+    top: 19px;
+    z-index: 40;
+    max-height:100px;
+}
+
+#wskaznik_brzuch_gorny img {
+    -ms-transform: rotate(6deg); /* IE 9 */
+    -webkit-transform: rotate(6deg); /* Safari */
+    transform: rotate(-97deg);
+    width:300%;
+}
+
+#complete_by_fb
+{
+    width:240px;
+    height:60px;
+}
+
+#portrety div img
+{
+    text-align:center;
+    margin:0 auto;
+    left:30%;
+    margin-bottom:20px;
+    margin-top:40px;
+}
+
+.kolko_portret
+{
+    border-radius:85px;
+    text-align:center;
+    margin:0 auto;
+}
+
+.tekst_glowny
+{
+    margin-top:25px;
+}
+
+
+@media (min-width:1092px)  {
+    #wskaznik_brzuch_dolny {
+        display: block;
+        position:relative;
+        top: -20px;
+        left: -60px;
+        z-index: 40;
+    }
+    #wskaznik_brzuch_dolny img{
+        width:210px;
+    }
+    #wskaznik_brzuch_gorny {
+        display: block;
+        left: -60px;
+        position:relative;
+        top: -15px;
+        z-index: 40;
+        max-height:100px;
+    }
+    #wskaznik_brzuch_gorny img{
+        width:210px;
+    }
+    .mobile_br {
+        display:none;
+    }
+}
+
+@media (max-width:1091px)  {
+    #wskaznik_brzuch_dolny {
+        display: block;
+        position:relative;
+        top: -2px;
+        left: -60px;
+        z-index: 40;
+    }
+    #wskaznik_brzuch_dolny img{
+        width:150px;
+    }
+    #wskaznik_brzuch_gorny {
+        display: block;
+        left: -50px;
+        position:relative;
+        top: -5px;
+        z-index: 40;
+        max-height:100px;
+    }
+    #wskaznik_brzuch_gorny img{
+        width:150px;
+    }
+    #kroki_rejestracji {
+        width:650px;
+        height:140px;
+        margin:0 auto;
+    }
+    .mobile_br {
+        display:block;
+    }
+}
+
+@media (max-width:768px)  {
+    #wskaznik_brzuch_dolny {
+        display: none;
+    }
+    #wskaznik_brzuch_gorny {
+        display: none;
+    }
+}
+
+@media (max-width:681px)  {
+    #wskaznik_brzuch_dolny {
+        display: none;
+    }
+    #wskaznik_brzuch_gorny {
+        display: none;
+    }
+    #kroki_rejestracji {
+        width:320px;
+        height:140px;
+        margin:0 auto;
+    }
+    #wskaznik_brzuch_dolny img{
+        width:80px;
+    }
+    #wskaznik_brzuch_gorny img{
+        width:80px;
+    }
+}
+
+.row{
+    margin-right:0px !important;
+}

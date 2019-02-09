@@ -1,0 +1,108 @@
+
+#nr_card
+{
+    display:block !important;
+}
+
+#nr_nazwisko
+{
+    max-width:49%;
+    display:block !important;
+}
+
+#nr_imie {
+    max-width:100%;
+    display:block !important;
+}
+
+#o_mnie label{
+    display:block !important;
+}
+
+#dolacz_do_nas #buttony {
+    margin-top:125px;
+}
+
+.profil_button {
+    padding-left:60px;
+    padding-right:60px;
+    padding-top:15px;
+    padding-bottom:15px;
+    text-align:center;
+    display:inline-block;
+}
+
+#haslo_stan{
+    display:block;
+    margin-left:15px;
+
+}
+
+#haslo_stan{
+    display:inline-block;
+    position:relative;
+}
+
+#powtorz_haslo{
+    display:inline-block;
+}
+
+#jakosc_hasla {
+    width:120px!important;
+    display: inline-block;
+}
+
+#widocznosc_haslo{
+    width:70px!important;
+    display: inline-block;
+}
+
+#generuj_haslo{
+    font-weight: normal;
+    width:70px!important;
+    margin-left:0px;
+    text-align:center;
+    padding:0px;
+
+}
+
+#generuj_haslo{
+    display:inline-block;
+}
+
+#oko{
+    display:inline-block;
+    width:30px!important;
+}
+
+.haslo_slabe{
+    background-color:#ce4033;
+    padding:6px!important;
+    text-align:center!important;
+    width:100%!important;
+    border-radius:5px;
+    color:white;
+}
+
+.haslo_srednie{
+    background-color:#ce7b33;
+    padding:6px!important;
+    text-align:center!important;
+    width:100%!important;
+    border-radius:5px;
+    color:white;
+}
+
+.haslo_mocne{
+    background-color:#86ce33;
+    padding:6px!important;
+    text-align:center!important;
+    width:100%!important;
+    border-radius:5px;
+    color:white;
+}
+
+.panel-body {
+    padding: 0px!important;
+    padding-right: 8px!important;
+}

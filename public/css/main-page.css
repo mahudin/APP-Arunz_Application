@@ -1,0 +1,771 @@
+
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 100;
+	src: local('Montserrat-Hairline'), url(../fonts/Montserrat-Hairline.otf) format('opentype');
+}
+@font-face {
+	font-family: 'Montserrat';
+	font-style: normal;
+	font-weight: 200;
+	src: local('Montserrat-Light'), url(../fonts/Montserrat-Light.otf) format('opentype');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 300;
+	src: local('Open Sans Light'), local('OpenSans-Light'), url(../fonts/DXI1ORHCpsQm3Vp6mXoaTRa1RVmPjeKy21_GQJaLlJI.woff) format('woff');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Open Sans'), local('OpenSans'), url(../fonts/u-WUoqrET9fUeobQW7jkRT8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Open Sans Bold'), local('OpenSans-Bold'), url(../fonts/k3k702ZOKiLJc3WVjuplzBa1RVmPjeKy21_GQJaLlJI.woff) format('woff');
+}
+
+p{
+	font-family: 'Open Sans'!important;
+}
+
+#parametry_trasy {
+	width:100%;
+	background-color:silver;
+	text-align:center;
+	padding-bottom:0px;
+	margin-top:-20px;
+}
+
+#napis_instr_captcha {
+	display:inline-block;
+	opacity:0.7;
+}
+
+#input_captcha {
+	display:inline-block;
+}
+
+.img-spistrasy {
+	width:75px;
+	height:60px;
+}
+
+.trasa {
+	background-color:silver;
+	height:60px;
+}
+
+.info > p {
+	margin-bottom:-2px;
+	margin-top:-2px;
+}
+
+#spis_trasy {
+	list-style:none;
+	padding-left:0px;
+}
+
+.identyfikator {
+	font-size:18px;
+	text-align:center;
+	border-style:solid;
+	border-radius:155px;
+	padding:3px;
+	margin-top:21px;
+	background-color:green;
+}
+
+.violet_text {
+	font-size:40pt;
+	line-height:45pt;
+	letter-spacing: 0.5pt;
+	font-family:"Montserrat", sans-serif;
+	/*font-weight: 800;*/
+	color: 	#673ab7 !important;
+	display:inline;
+}
+
+.violet_number {
+	font-size:40pt;
+	line-height:45pt;
+	letter-spacing:3pt;
+	font-family:"Montserrat", sans-serif;
+	color: 	#673ab7 !important;
+	display:inline;
+}
+
+.to_az .violet_text {
+	/*font-weight: bold;*/
+}
+
+.normal_text {
+	font-size:40pt;
+	line-height:45pt;
+	font-weight: lighter;
+	font-family:"Open Sans", sans-serif;
+}
+
+#wskaznik {
+	display: block;
+  	left: 20px;
+  	position: absolute;
+  	top: 228px;
+  	z-index: 30;
+}
+
+#kroczki {
+	max-height:150px;
+}
+
+#kroki {
+	max-height:330px;
+}
+
+#wskaznik_brzuch_dolny {
+	display: block;
+	left: 20px;
+	position:relative;
+	top: -243px;
+	left:56%;
+	z-index: 40;
+}
+
+ #wskaznik_brzuch_dolny img {
+	 -ms-transform: rotate(6deg); /* IE 9 */
+	 -webkit-transform: rotate(6deg); /* Safari */
+	 transform: rotate(-170deg);
+	 width:100%;
+  }
+
+#wskaznik_brzuch_gorny img {
+	-ms-transform: rotate(6deg); /* IE 9 */
+	-webkit-transform: rotate(6deg); /* Safari */
+	transform: rotate(-15deg);
+	width:100%;
+}
+
+#wskaznik_brzuch_gorny {
+	display: block;
+	left: 20px;
+	position:relative;
+	top: -263px;
+	left:56%;
+	z-index: 40;
+	max-height:100px;
+ }
+ 
+
+
+
+
+
+#wskaznik_brzuch_dolny_mobilny {
+	display: block;
+	position: relative;
+	left:73%;
+	z-index: 40;
+	max-height: 80px;
+	width:180px;
+	top:-120px;
+}
+
+#wskaznik_brzuch_dolny_mobilny img {
+	-ms-transform: rotate(6deg); /* IE 9 */
+	-webkit-transform: rotate(6deg); /* Safari */
+	transform: rotate(-45deg);
+	width:180px;
+}
+
+#wskaznik_brzuch_gorny_mobilny {
+	display: block;
+	position: relative;
+
+	right:100px;
+	z-index: 40;
+	max-height: 80px;
+	width:180px;
+	top:-140px;
+}
+
+#wskaznik_brzuch_gorny_mobilny img {
+	-ms-transform: rotate(6deg); /* IE 9 */
+	-webkit-transform: rotate(6deg); /* Safari */
+	transform: rotate(45deg);
+	width:180px;
+}
+ 
+#rozwiazujemy_za_ciebie {
+	width:100%;
+	min-height:300px;
+	background-color:white;	
+}
+
+
+#create_account {
+	margin-top:12px;
+	margin-bottom:25px;
+	padding-top:7px;
+	padding-bottom:7px;
+	padding-left:15px;
+	padding-right:15px;
+	font-size:18px;
+	font-family:Montserrat Light, sans-serif;
+	background-color:#673BB7;
+	border-radius:0px;
+	color:white;
+	display:inline;
+}
+
+#second_create_account {
+	margin-top:8px;
+	margin-bottom:12px;
+	padding-top:7px;
+	padding-bottom:7px;
+	padding-left:70px;
+	padding-right:70px;
+	font-size:18px;
+	font-family:Montserrat Light, sans-serif;
+	background-color:#673BB7;
+	color:white;
+	display:inline;
+}
+
+.to_az {
+	padding-bottom:8px;
+}
+
+
+
+
+.panel-body {
+	padding: 0px!important;
+}
+
+
+
+/*
+.great-button-grey{
+	background-color:gray;padding-top:40px;padding-bottom:40px;text-align:center;
+}
+
+.great-button-blue{
+	background-color:#0066CD;padding-top:40px;padding-bottom:38px;
+}
+
+.great-button-black{
+	background-color:black;padding-top:40px;padding-bottom:40px;
+}
+
+
+.little-button-grey{
+	background-color:grey;padding-top:20px;padding-bottom:20px;
+}
+
+.little-button-blue{
+	background-color:#0066CD;padding-top:20px;padding-bottom:18px;
+}
+
+.little-button-black{
+	background-color:black;padding-top:20px;padding-bottom:20px;color:#0066CD;
+}*/
+
+@media (min-width: 2150px) {
+	#wskaznik_brzuch_dolny img {
+		-ms-transform: rotate(6deg); /* IE 9 */
+		-webkit-transform: rotate(6deg); /* Safari */
+		transform: rotate(-170deg);
+		width:325px;
+	}
+
+	#wskaznik_brzuch_gorny img {
+		-ms-transform: rotate(6deg); /* IE 9 */
+		-webkit-transform: rotate(6deg); /* Safari */
+		transform: rotate(-15deg);
+		width:325px;
+	}
+	#wskaznik_brzuch_gorny {
+		display: block;
+		left: 20px;
+		position: relative;
+		top: -289px;
+		left:57%;
+		z-index: 40;
+		max-height:100px;
+	}
+	#wskaznik_brzuch_dolny {
+		display: block;
+		left: 20px;
+		position:relative;
+		top: -268px;
+		left:57%;
+		z-index: 40;
+		max-height:100px;
+	}
+	#wskaznik_poziomy {
+		display: block;
+		left: 20px;
+		position: absolute;
+		top: 228px;
+		z-index: 30;
+	}
+	#wskaznik_pionowy {
+		display: none;
+		left: 50px;
+		position: absolute;
+		top: 228px;
+		z-index: 30;
+	}
+	#kroczki > div {
+		min-height:300px;
+	}
+	#kroczki > div:nth-child(1) {
+		min-height:300px;
+	}
+
+	#wersja_desktopowa {
+		display:block;
+	}
+	#tekst_rozwiazujemy_za_ciebie{
+		width:400px;
+		margin-left: 60%!important;
+	}
+	#wskaznik_brzuch_dolny_mobilny {
+		display:none;
+	}
+	#wskaznik_brzuch_gorny_mobilny {
+		display:none;
+	}
+}
+
+@media (min-width: 1950px)  and (max-width:2150px) {
+	#wskaznik_brzuch_gorny {
+		display: block;
+		left: 20px;
+		position: relative;
+		top: -289px;
+		left:56%;
+		z-index: 40;
+		max-height:100px;
+	}
+	#wskaznik_brzuch_dolny {
+		display: block;
+		left: 20px;
+		position:relative;
+		top: -263px;
+		left:56%;
+		z-index: 40;
+		max-height:100px;
+	}
+	#wskaznik_poziomy {
+		display: block;
+		left: 20px;
+		position: absolute;
+		top: 228px;
+		z-index: 30;
+	}
+	#wskaznik_pionowy {
+		display: none;
+		left: 50px;
+		position: absolute;
+		top: 228px;
+		z-index: 30;
+	}
+	#kroczki > div {
+		min-height:300px;
+	}
+	#kroczki > div:nth-child(1) {
+		min-height:300px;
+	}
+
+	#wersja_desktopowa
+	{
+		display:block;
+	}
+	#tekst_rozwiazujemy_za_ciebie{
+		width:400px;
+		margin-left: 40%!important;
+	}
+	#wskaznik_brzuch_dolny_mobilny {
+		display:none;
+	}
+	#wskaznik_brzuch_gorny_mobilny {
+		display:none;
+	}
+}
+
+@media (min-width: 1750px) and (max-width:1950px) {
+	#wskaznik_brzuch_gorny {
+		display: block;
+		left: 20px;
+		position: relative;
+		top: -268px;
+		left:56%;
+		z-index: 40;
+		max-height:100px;
+	}
+	#wskaznik_brzuch_dolny {
+		display: block;
+		left: 20px;
+		position:relative;
+		top: -243px;
+		left:56%;
+		z-index: 40;
+		max-height:100px;
+	}
+	#tekst_rozwiazujemy_za_ciebie{
+		width:400px;
+		margin-left: 35%!important;
+	}
+	#wskaznik_poziomy {
+		display: block;
+		left: 20px;
+		position: absolute;
+		top: 228px;
+		z-index: 30;
+	}
+	#wskaznik_pionowy {
+		display: none;
+		left: 50px;
+		position: absolute;
+		top: 228px;
+		z-index: 30;
+	}
+	#kroczki > div {
+		min-height:300px;
+	}
+	#kroczki > div:nth-child(1) {
+		min-height:300px;
+	}
+
+	#wersja_desktopowa {
+		display:block;
+	}
+	#wskaznik_brzuch_dolny_mobilny {
+		display:none;
+	}
+	#wskaznik_brzuch_gorny_mobilny {
+		display:none;
+	}
+}
+
+@media (min-width:1200px) and (max-width:1750px) {
+	#wskaznik_poziomy {
+		display: block;
+		left: 20px;
+		position: absolute;
+		top: 228px;
+		z-index: 30;
+	}
+	#wskaznik_pionowy {
+		display: none;
+		left: 50px;
+		position: absolute;
+		top: 228px;
+		z-index: 30;
+	}
+	#kroczki > div {
+		min-height:300px;
+	}
+	#kroczki > div:nth-child(1) {
+		min-height:300px;
+	}
+
+	#wersja_desktopowa
+	{
+		display:block;
+	}
+	#wskaznik_brzuch_dolny_mobilny {
+		display:none;
+	}
+	#wskaznik_brzuch_gorny_mobilny {
+		display:none;
+	}
+	#tekst_rozwiazujemy_za_ciebie{
+		width:400px;
+		margin-top:-80px;
+		margin-left: 120%;
+	}
+}
+
+@media (min-width:993px) and (max-width:1200px) {
+	#wskaznik_poziomy {
+		position: absolute;
+		top: 228px;
+		left: 55px;
+	}
+
+	#wskaznik_pionowy {
+		display: none;
+	}
+	#kroczki > div {
+		min-height:300px;
+	}
+	#kroczki > div:nth-child(1) {
+		min-height:300px;
+		max-height:300px;
+	}
+
+	#wersja_desktopowa {
+		display:block;
+	}
+	#wskaznik_brzuch_dolny_mobilny {
+		display:none;
+	}
+	#wskaznik_brzuch_gorny_mobilny {
+		display:none;
+	}
+}
+
+@media (max-width:992px)  {
+	#wskaznik_poziomy {
+		display: none;
+	}
+	#wskaznik_pionowy {
+		display: block;
+	}
+	#kroczki > div {
+		min-height:300px;
+	}
+	#kroczki > div:nth-child(1) {
+		min-height:300px;
+		max-height:300px;
+	}
+	#wskaznik_brzuch_dolny {
+		display:block;
+	}
+	#wskaznik_brzuch_gorny {
+		display:block;
+	}
+	#rozwiazujemy_za_ciebie .violet_text {
+		letter-spacing: 3pt;
+	}
+
+	#wersja_desktopowa
+	{
+		display:block;
+	}
+	#zapiszemy_cie_na_twoj_bieg div:nth-child(1)
+	{
+		display:block;
+	}
+	#wskaznik_brzuch_dolny_mobilny {
+		display:none;
+	}
+	#wskaznik_brzuch_gorny_mobilny {
+		display:none;
+	}
+}
+@media (max-width:770px) {
+	#rozwiazujemy_za_ciebie > div:nth-child(2) {
+		margin-left:55px;
+		font-size: 20pt;
+	}
+	#zapiszemy_cie_na_twoj_bieg{
+		width:76.6%!important;
+	}
+}
+
+@media (max-width:732px) {
+	.row{
+		margin-left:0px!important;
+		margin-right:0px!important;
+	}
+	#dolacz_do_nas {
+		width: 100%;
+	}
+	#wersja_desktopowa {
+		display:block;
+	}
+	#wskaznik_brzuch_dolny {
+		display:none;
+	}
+	#wskaznik_brzuch_gorny {
+		display:none;
+	}
+	#wskaznik_brzuch_dolny_mobilny {
+		display:block;
+	}
+	#wskaznik_brzuch_gorny_mobilny {
+		display:block;
+	}
+	#kroki {
+		min-height:660px!important;
+		margin-left:0px!important;
+		margin-right:0px!important;
+	}
+	#kroczki > div {
+		width:100%;
+		position: relative;
+		margin-top:0.5%;
+	}
+	#kroczki > div:nth-child(1) {
+		margin-top:0.5%;
+		margin-bottom:0%;
+		margin-left:-130px;
+		min-height:150px;
+		position: relative;
+	}
+	#kroczki > div:nth-child(1) p {
+		width:230px;
+		margin: 0 auto;
+	}
+	#kroczki > div:nth-child(2) {
+		margin-top:-85px;
+		margin-left:130px;
+		min-height:150px;
+		position: relative;
+	}
+	#kroczki > div:nth-child(2) p {
+		width:230px;
+		margin: 0 auto;
+	}
+	#kroczki > div:nth-child(3) {
+		margin-top:-95px;
+		margin-left:-130px;
+		min-height:150px;
+		position: relative;
+	}
+	#kroczki > div:nth-child(3) p {
+		margin: 0 auto;
+		width:220px;
+	}
+	#wskaznik_poziomy {
+		display: none;
+	}
+	#wskaznik_pionowy {
+		display: none;
+	}
+	#rozwiazujemy_za_ciebie > div:nth-child(2) {
+		margin-left:-15px;
+		font-size: 20pt;
+	}
+	#rozwiazujemy_za_ciebie .violet_text {
+		letter-spacing: 1pt;
+		line-height: 9pt;
+		font-size: 35pt!important;
+	}
+	#rozwiazujemy_za_ciebie .normal_text {
+		letter-spacing: 1pt;
+		line-height: 9pt;
+		font-size: 35pt!important;
+	}
+	#rozwiazujemy_za_ciebie p {
+		font-size:11pt;
+	}
+	#dolacz_do_nas .violet_text {
+		font-size: 35pt!important;
+	}
+	#dolacz_do_nas .normal_text {
+		font-size: 35pt!important;
+	}
+	#zapiszemy_cie_na_twoj_bieg div:nth-child(1) {
+		display:none;
+	}
+	#zapiszemy_cie_na_twoj_bieg div:nth-child(4) {
+		display:block;
+	}
+	#tekst_rozwiazujemy_za_ciebie{
+		width:315px;
+	}
+}
+
+@media (max-width:686px) {
+	#tekst_rozwiazujemy_za_ciebie{
+		width:300px;
+	}
+	#wskaznik_brzuch_dolny_mobilny {
+		display:none;
+	}
+	#wskaznik_brzuch_gorny_mobilny {
+		display:none;
+	}
+	#kroki {
+		min-height:700px!important;
+	}
+	#kroczki > div:nth-child(1) {
+		margin-left:0px;
+	}
+	#kroczki > div:nth-child(1) p {
+		width:100%;
+		margin-left:0px;
+	}
+	#kroczki > div:nth-child(2) {
+		margin-top:0%;
+		margin-left:0px;
+	}
+	#kroczki > div:nth-child(2) p {
+		width:100%;
+		margin-left:0%;
+	}
+	#kroczki > div:nth-child(3) {
+		margin-top:0%;
+		margin-left:0px;
+	}
+	#kroczki > div:nth-child(3) p {
+		width:100%;
+		margin-right:0px;
+	}
+	#wersja_desktopowa {
+		display:none;
+	}
+	#rozwiazujemy_za_ciebie > div:nth-child(2) {
+		margin-left:-15px;
+	}
+	#zapiszemy_cie_na_twoj_bieg div:nth-child(1)
+	{
+		display:none;
+	}
+	#zapiszemy_cie_na_twoj_bieg div:nth-child(2)
+	{
+		width:300px;
+		text-align:center;
+		margin-left:50px;
+	}
+	#zapiszemy_cie_na_twoj_bieg div:nth-child(4)
+	{
+		display:none;
+	}
+}
+
+@media (max-width:468px) {
+	#tekst_rozwiazujemy_za_ciebie{
+		width:250px;
+	}
+
+	#rozwiazujemy_za_ciebie p {
+		font-size:9pt;
+	}
+	#dolacz_do_nas .violet_text {
+		font-size: 28pt!important;
+	}
+	#dolacz_do_nas .normal_text {
+		font-size: 28pt!important;
+	}
+	#rozwiazujemy_za_ciebie .violet_text {
+		letter-spacing: 1pt;
+		line-height: 5pt;
+		font-size: 28pt!important;
+	}
+	#rozwiazujemy_za_ciebie .normal_text {
+		letter-spacing: 1pt;
+		line-height: 5pt;
+		font-size: 28pt!important;
+	}
+	#wskaznik_poziomy {
+		display: none;
+	}
+	#wskaznik_pionowy
+	{
+		display: none;
+		margin:0 auto;
+	}
+	p{
+		font-size:10pt;
+	}
+}
