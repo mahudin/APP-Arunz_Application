@@ -21,12 +21,12 @@
     if(Math.abs(lastScrollTop - st) <= delta)
       return;
 
-    if (st > lastScrollTop && st > navbarHeight){
+    if (st > lastScrollTop && st > navbarHeight) {
       $('header').animate({
         top: "-100"
       },250);
     } else {
-      // Scroll Up
+   
       if(st + $(window).height() < $(document).height()) {
         $('header').animate({
           top: "0"
