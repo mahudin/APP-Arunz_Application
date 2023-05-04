@@ -103,29 +103,33 @@ class MailController extends Controller
         $login = 'Michał Hudaszek';
         $haslo = User::get_user_by_email($email);
         $token = Mail::create_token_password_reminder($haslo[0]->id);
-        //$tresc = $this->Tresc($login, $haslo);
 
-        if ($this->WyslijMajlPrzypominajacy($email,$login,$haslo[0]->password,$token)) {
+        if ($this->WyslijMajlPrzypominajacy($email,$login,$haslo[0]->password,$token)) 
+		{
             return "true";
-        }else{
+        } 
+		else 
+		{
             return "false";
         }
     }
 
     public function check_token_remind_pass($id){
 
-        $token=Mail::get_password_reminder_by_token($id);
-        if(isset($token[0]) && $token[0]->passkey==$id){
+        $token = Mail::get_password_reminder_by_token($id);
+        if(isset($token[0]) && $token[0]->passkey == $id){
             $date1 = strtotime($token[0]->created_datatime);
             $date2 = strtotime("+1 hour", $date1);
-            if($token[0]->is_used==1){
+            if($token[0]->is_used == 1){
                 return view("error_remind_password",['d1'=>strtotime(date('Y-M-d h:i:s')),'d2'=> $date2]);
             }
             else{
-                if(strtotime(date('Y-M-d h:i:s')) >= $date2 ) {
+                if(strtotime(date('Y-M-d h:i:s')) >= $date2 ) 
+				{
                     return view("error_remind_password",['d1'=>strtotime(date('Y-M-d h:i:s')),'d2'=> $date2]);
                 }
-                else if(strtotime(date('Y-M-d h:i:s')) < $date2  ){
+                else if(strtotime(date('Y-M-d h:i:s')) < $date2  )
+				{
                     if($token[0]->is_used){
                         return view("error_remind_password",['d1'=>strtotime(date('Y-M-d h:i:s')),'d2'=> $date2]);
                     }
@@ -133,7 +137,6 @@ class MailController extends Controller
                         Mail::change_using_reminder_by_token($token[0]->passkey);
                         return view("remind_password",['fbscript' => 'js/reminder.js','idu_rp'=>$token[0]->by_user]);
                     }
-
                 }
             }
         }

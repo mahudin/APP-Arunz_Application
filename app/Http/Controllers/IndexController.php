@@ -14,7 +14,7 @@ class IndexController extends Controller
     public function all_roads(){ 
 		$user = Auth::user();
 		$marathons = Roads::get_marathons_user($user->login);
-		return view('roads',['fbscript' => 'js/roads.js','marathons'=>$marathons]); 
+		return view('roads',['fbscript' => 'js/roads.js', 'marathons' => $marathons]); 
     }
 	
 	public function register_first()
@@ -50,8 +50,8 @@ class IndexController extends Controller
 		$request->session()->push('guest.street', $request->input('street'));
 		$request->session()->push('guest.code_country', $request->input('code_country'));
 		$user = Auth::user();
-		$imie=$request->session()->get("guest.imie")!=""?$request->session()->get("guest.imie"):"";
-		$nazwisko=$request->session()->get("guest.nazwisko")!=""?$request->session()->get("guest.nazwisko"):"";
+		$imie = $request->session()->get("guest.imie")!=""?$request->session()->get("guest.imie"):"";
+		$nazwisko = $request->session()->get("guest.nazwisko")!=""?$request->session()->get("guest.nazwisko"):"";
 		return view('register3',['user'=>$user,'imie'=>$imie[0],'nazwisko'=>$nazwisko[0],'css'=>'register3-page.css','fbscript' => 'js/register3.js']);
 	}
 

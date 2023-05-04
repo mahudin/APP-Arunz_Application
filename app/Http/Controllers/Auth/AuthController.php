@@ -70,17 +70,17 @@ class AuthController extends Controller
     {
         return User::create([
             'login' => $data['login'],
-	    'password' => bcrypt($data['password']),
+			'password' => bcrypt($data['password']),
             'first_name' => $data['first_name'],
        	    'last_name' => $data['last_name'],
-	    'email' => $data['email'],
-	    'birth_date' => $data['birth_date'],
-	    'sex' => $data['sex'],
-	    'age' => $data['age'],
-	    'city' => $data['city'],
-	    'telephone' => $data['telephone'],
-	    'join_date' => $data['date'],
-	    'is_online' => $data['is_online']
+			'email' => $data['email'],
+			'birth_date' => $data['birth_date'],
+			'sex' => $data['sex'],
+			'age' => $data['age'],
+			'city' => $data['city'],
+			'telephone' => $data['telephone'],
+			'join_date' => $data['date'],
+			'is_online' => $data['is_online']
         ]);
     }
 
@@ -89,99 +89,96 @@ class AuthController extends Controller
 		echo $request->input('email');
 	}
 
-    public function enter_by_facebook($fn,$ln,$g,$a,$em,$brt,$hm,$url)
+    public function enter_by_facebook($fn, $ln, $g, $a, $em, $brt, $hm, $url)
     {
-	$id=User::check_by_login($fn);
-	if(!empty($id)) //gdy jest taka osoba zarejestrowana
-	{
-		Auth::loginUsingId($id);
-            	return redirect('marathons');
+		$id = User::check_by_login($fn);
+		if(!empty($id)) 
+		{
+			Auth::loginUsingId($id);
+            return redirect('marathons');
         }
-	else
-	{
-		$data=explode(',',$brt);
-		$dane=[];
-		$dane['login']=$fn;
-		$dane['password']='dupa';
-		$dane['first_name']=$fn;
-		$dane['last_name']=$ln;
-		$dane['email']=$em;
-		$dane['birth_date']=$data[2].'-'.$data[0].'-'.$data[1];
-		$dane['sex']=$g=='male'?1:0;
-		$dane['age']=$a;
-		$dane['city']=$hm;
-		$dane['telephone']='000000000';
-		$dane['join_date']=date('Y-m-d');
+		else
+		{
+			$data = explode(',',$brt);
+			$dane = [];
+			$dane['login'] = $fn;
+			$dane['password'] = 'dupa';
+			$dane['first_name'] = $fn;
+			$dane['last_name'] = $ln;
+			$dane['email'] = $em;
+			$dane['birth_date'] = $data[2].'-'.$data[0].'-'.$data[1];
+			$dane['sex'] = $g == 'male' ? 1:0;
+			$dane['age'] = $a;
+			$dane['city'] = $hm;
+			$dane['telephone'] = '000000000';
+			$dane['join_date'] = date('Y-m-d');
 
-		$wyn=User::add_user($dane);
-		$wynik=User::get_user_by_login($dane['login']);
+			$wyn=User::add_user($dane);
+			$wynik=User::get_user_by_login($dane['login']);
 
-		return redirect('home/marathons');
-	}
+			return redirect('home/marathons');
+		}
     }
 
     public function check_and_login(Request $request)
     {
-	$name = $request->input('email');
-	$password = $request->input('password');
-	$credentials=['email' => $name, 'password' => md5($password),'_token'=>$request->all()['_token']];
+		$name = $request->input('email');
+		$password = $request->input('password');
+		$credentials=['email' => $name, 'password' => md5($password),'_token'=>$request->all()['_token']];
 
-	$wynik=Validator::make($credentials, [
+		$wynik=Validator::make($credentials, [
             'email' => 'required|min:6',
             'password' => 'required|min:6'
         ]);
 
-	if($wynik->fails()) {
+		if($wynik->fails()) 
+		{
         	return redirect('login')
             	->withInput()
             	->withErrors($wynik);
     	}
-	$id=User::authenticate_user($credentials);
+		$id = User::authenticate_user($credentials);
 	
-	if(!empty($id))
-	{
-		Auth::loginUsingId($id);
-		return redirect('home/marathons');
-	}
-	else
-	{
-		return redirect('login')->with(['message'=>'błąd zalogowania']);
-	}
-    
+		if(!empty($id))
+		{
+			Auth::loginUsingId($id);
+			return redirect('home/marathons');
+		}
+		else
+		{
+			return redirect('login')->with(['message'=>'błąd zalogowania']);
+		}
     }
-
-
 
     public function register_and_login(Request $request)
     {
-	$wynik=Validator::make($request->all(), [
+		$wynik=Validator::make($request->all(), [
             'email' => 'required|min:6',
             'password' => 'required|min:6'
-	   // 'birth_date' => 'required|min:6'
         ]);
-	if($wynik->fails()) {
+		if($wynik->fails()) {
         	return redirect('register')
             	->withInput()
             	->withErrors($wynik);
     	}
-	$dane=[];
-	$dane['login']=$request->input('login');
-	$dane['password']=md5($request->input('password'));
-	$dane['first_name']=$request->input('first_name');
-	$dane['last_name']=$request->input('last_name');
-	$dane['email']=$request->input('email');
-	$dane['birth_date']='2010-01-01';
-	$dane['sex']=$request->input('sex');
-	$dane['age']=18;
-	$dane['city']=$request->input('city');
-	$dane['telephone']=$request->input('telephone');
-	$dane['join_date']=$request->input('join_date');
+		$dane=[];
+		$dane['login'] = $request->input('login');
+		$dane['password'] = md5($request->input('password'));
+		$dane['first_name'] = $request->input('first_name');
+		$dane['last_name'] = $request->input('last_name');
+		$dane['email'] = $request->input('email');
+		$dane['birth_date'] = '2010-01-01';
+		$dane['sex'] = $request->input('sex');
+		$dane['age'] = 18;
+		$dane['city'] = $request->input('city');
+		$dane['telephone'] = $request->input('telephone');
+		$dane['join_date'] = $request->input('join_date');
 
-	$wyn=User::add_user($dane);
-	$wynik=User::get_user_by_login($dane['login']);
-	
-	Auth::loginUsingId($wynik[0]->id);
-	return redirect('home/marathons');
+		$wyn = User::add_user($dane);
+		$wynik = User::get_user_by_login($dane['login']);
+		
+		Auth::loginUsingId($wynik[0]->id);
+		return redirect('home/marathons');
     }
 
     public function logout()
@@ -191,8 +188,9 @@ class AuthController extends Controller
     }
 
 	public function check_compatibility(Request $request){
-		$dane=User::get_user_by_email($request->input('email'));
-		if($dane[0]->password==md5($request->input('pass')))
+		$dane = User::get_user_by_email($request->input('email'));
+		
+		if($dane[0]->password == md5($request->input('pass')))
 		{
 			return $dane[0]->id;
 		}
@@ -204,8 +202,8 @@ class AuthController extends Controller
 
 	public function fb_check_email(Request $request)
 	{
-		$email=$request->input('email');
-		$wynik=User::get_user_by_email($email);
+		$email = $request->input('email');
+		$wynik = User::get_user_by_email($email);
 		if(isset($wynik[0]->id))
 		{
 			Auth::loginUsingId($wynik[0]->id);
@@ -249,38 +247,9 @@ class AuthController extends Controller
 		return redirect('register_done');
     }
 
-	public function update_profile()
-	{
-		echo "dupa";
-		/*
-		$dane=[];
-		$id=$request->input('idu');
-		$dane['email']=$request->input('email');
-		$dane['password']=md5($request->input('password'));
-		$dane['uname']=$request->input('uname');
-		$dane['surname']=$request->input('surname');
-		$dane['sex']=$request->input('male')=="male"?1:2;
-		$dane['phone']=$request->input('phone');
-		$dane['city']=$request->input('city');
-		$dane['walking_for']="";//$request->session()->get('guest.biegam_od')[0];
-		$dane['walking_count']="";//$request->session()->get('guest.miesiecznie_przebiegam')[0];
-		$dane['walking_because']="";//$request->session()->get('guest.biegam_poniewaz')[0];
-		$dane['nr_card']=$request->input('numer_karty');
-		$dane['date_card']=$request->input('data_waznosci');
-		$dane['uname_card']=$request->input('uname_card');
-		$dane['surname_card']=$request->input('surname_card');
-		//$dane['join_date']=date('Y-m-d H:i:s');
-		//$dane['is_online']=1;
-		$request->session()->flush();z
-		print_r($dane);
-		exit();*/
-		//User::update_profile_user($dane,$id);
-		//return redirect('register_done');
-	}
-
 	public function check_email(Request $request)
 	{
-		$dane=User::get_user_by_email($request->input('email'));
+		$dane = User::get_user_by_email($request->input('email'));
 		if(isset($dane[0]->id))
 		{
 			return $dane[0]->id;
@@ -293,7 +262,7 @@ class AuthController extends Controller
 
 	public function check_email_and_password(Request $request)
 	{
-		$dane=User::get_user_by_email_and_password($request->input('email'),md5($request->input('pass')));
+		$dane = User::get_user_by_email_and_password($request->input('email'), md5($request->input('pass')));
 		if(isset($dane[0]->id))
 		{
 			return $dane[0]->id;
@@ -306,15 +275,15 @@ class AuthController extends Controller
 
 	public function get_available_roads(Request $request)
 	{
-		$roads=Roads::get_marathons_all();
-		$roads_for_ee=[];
-		foreach($roads as $road) $roads_for_ee[]=$road->title;
+		$roads = Roads::get_marathons_all();
+		$roads_for_ee = [];
+		foreach($roads as $road) $roads_for_ee[] = $road->title;
 
 		return Json::encode($roads_for_ee);
 	}
 
 	public function change_password(Request $request){
-		User::change_password(md5($request->input('haslo')),$request->input('idu'));
+		User::change_password(md5($request->input('haslo')), $request->input('idu'));
 		return redirect('/');
 	}
 

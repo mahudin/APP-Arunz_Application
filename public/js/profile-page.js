@@ -204,10 +204,8 @@ $(document).ready(function() {
         return temp.toLowerCase();
     }
 
-
-
-
-    function generatePassword() {
+    function generatePassword() 
+	{
         var length = 8,
             charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
             retVal = "";
@@ -217,12 +215,14 @@ $(document).ready(function() {
         return retVal;
     }
 
-    function jakosc_hasla(val) {
+    function jakosc_hasla(val) 
+	{
         var haslo = val;
         var haslo_slabe = new RegExp("^[a-z]+$");
         var haslo_srednie1 = new RegExp("^[a-zA-Z]+$");
         var haslo_srednie2 = new RegExp("^[a-z0-9]+$");
         var haslo_mocne = new RegExp("^[a-zA-Z0-9]+$");
+		
         if (haslo_slabe.test(haslo)) {
             $("#jakosc_hasla").html("<div class='haslo_slabe'>Słabe</div>");
         }
@@ -263,7 +263,8 @@ $(document).ready(function() {
 
         if($("#stare_haslo").val()!="" || $("#haslo").val()!="")
         {
-            if(MD5($("#stare_haslo").val()) != $("#_old_password").val()){
+            if(MD5($("#stare_haslo").val()) != $("#_old_password").val())
+			{
                 $("#error_pass").append("<p>Podane stare hasło jest nieprawidłowe !</p>");
                 return false;
             }

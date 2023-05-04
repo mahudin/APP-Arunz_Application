@@ -43,10 +43,10 @@
        });*/
 
        $('#przejdz_dalej').click(function(){
-          var biegam_od=$('#biegam_od').val();
-          var miesiecznie_przebiegam=$('#miesiecznie_przebiegam').val();
-          var biegam_poniewaz=$('#biegam_poniewaz').val();
-          var udzial_w_wydarzeniach=$('#udzial_w_wydarzeniach').val();
+           var biegam_od = $('#biegam_od').val();
+           var miesiecznie_przebiegam = $('#miesiecznie_przebiegam').val();
+           var biegam_poniewaz = $('#biegam_poniewaz').val();
+           var udzial_w_wydarzeniach = $('#udzial_w_wydarzeniach').val();
            if(biegam_od !='' && miesiecznie_przebiegam !='' && biegam_poniewaz!='') {
                   writeCookie('biegam_od', email, 1);
                   writeCookie('miesiecznie_przebiegam', haslo, 1);

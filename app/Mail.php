@@ -21,26 +21,29 @@ class Mail extends Model
         return date("Ymdhis").'-'.$randomString;
     }
 
-    public static function create_token_password_reminder($user_id){
-
-        $nowe_haslo=self::generatePassword();
+    public static function create_token_password_reminder(int $user_id)
+	{
+        $nowe_haslo = self::generatePassword();
 
         DB::insert("INSERT INTO password_reminder (passkey,created_datatime,is_used,by_user)
                     VALUES
                     (:passkey,:created_datatime,:is_used,:by_user)"
-                ,["passkey"=>$nowe_haslo,"created_datatime"=> date("Y-m-d h:i:s"),"is_used"=>false,"by_user"=>$user_id]);
+                ,["passkey" => $nowe_haslo, "created_datatime"=> date("Y-m-d h:i:s"), "is_used"=>false, "by_user" => $user_id]);
         return $nowe_haslo;
     }
 
-    public static function get_password_reminder(){
+    public static function get_password_reminder()
+	{
         return DB::select("SELECT * FROM password_reminder ");
     }
 
-    public static function get_password_reminder_by_token($token){
-        return DB::select("SELECT * FROM password_reminder WHERE passkey=:passkey ",['passkey'=>$token]);
+    public static function get_password_reminder_by_token(string $token)
+	{
+        return DB::select("SELECT * FROM password_reminder WHERE passkey=:passkey ",['passkey' => $token]);
     }
 
-    public static function change_using_reminder_by_token($id){
-        DB::update("UPDATE password_reminder SET is_used=1 where passkey=:id ",["id"=>$id]);
+    public static function change_using_reminder_by_token(int $id)
+	{
+        DB::update("UPDATE password_reminder SET is_used=1 where passkey=:id ",["id" => $id]);
     }
 }

@@ -4,8 +4,6 @@ $(document).ready(function(){
 		window.location.href='/register';
     });
 
-
-
 	$( ".datepicker" ).datepicker();
 		$( ".datepicker" ).datepicker("option", "dateFormat", "yy-mm-dd" );
 
@@ -20,22 +18,18 @@ $(document).ready(function(){
             var imgURL = $img.attr('src');
 
             jQuery.get(imgURL, function(data) {
-                // Get the SVG tag, ignore the rest
                 var $svg = jQuery(data).find('svg');
 
-                // Add replaced image's ID to the new SVG
                 if(typeof imgID !== 'undefined') {
                     $svg = $svg.attr('id', imgID);
                 }
-                // Add replaced image's classes to the new SVG
+				
                 if(typeof imgClass !== 'undefined') {
                     $svg = $svg.attr('class', imgClass+' replaced-svg');
                 }
 
-                // Remove any invalid XML tags as per http://validator.w3.org
                 $svg = $svg.removeAttr('xmlns:a');
 
-                // Replace image with new SVG
                 $img.replaceWith($svg);
 
             }, 'xml');
@@ -71,7 +65,6 @@ $(document).ready(function(){
 				});
 
 				$('.popup').on('click', function(e)  {
-					console.log(e.target.tagName);
 
 					if( e.target.id != "popek" &&
 						e.target.id != "faceb" && 
@@ -160,11 +153,9 @@ $(document).ready(function(){
 							}).done(function( msg ) {
 								console.log(msg);
 								$('[data-popup="popup-4"]').fadeOut(350);
-								//window.location="marathons";
 							}).fail(function(e){console.log(e.responseText);});
 
 							$('[data-popup="popup-4"]').fadeOut(350);
-							//$("#additional_data_user").submit();
 						}
 
 							$('[data-popup="popup-1"]').fadeOut(350);
@@ -172,12 +163,7 @@ $(document).ready(function(){
 							$('[data-popup="popup-3"]').fadeOut(350);
 							$('[data-popup="popup-4"]').fadeOut(350);
 
-
-
-
-
 					}
-					//e.stopPropagation();
     			});
 
 	$('#remember_pass_user_form').on('submit',function(e){
@@ -244,49 +230,52 @@ $(document).ready(function(){
 			temp = $("#fmail").val();
 			if (patt1.test(temp)) {
 				$.ajax({
-							url: "check_email_and_password",
+					url: "check_email_and_password",
+					type : "POST",
+					data: { email : $("#fmail").val(),pass:$('#fhaslo').val() },
+					dataType: "json"
+				})
+				.done(function(data) {
+					$("#fmail_errors").html("");
+					if(data > 0) 
+					{
+						$.ajax({
+							url: "check_compatibility",
 							type : "POST",
-							data: { email : $("#fmail").val(),pass:$('#fhaslo').val() },
+							data: { email : $("#fmail").val(), pass:$('#fhaslo').val() },
 							dataType: "json"
 						})
 						.done(function(data) {
-							console.log(data);
-							$("#fmail_errors").html("");
 							if(data > 0) {
-								$.ajax({
-											url: "check_compatibility",
-											type : "POST",
-											data: { email : $("#fmail").val(),pass:$('#fhaslo').val() },
-											dataType: "json"
-										})
-										.done(function(data) {
-											console.log(data);
-											if(data > 0) {
-												$("#login_user_form").submit();
-												return true;
-											}
-											else{
-												$("#fhaslo_errors").append("<div style='text-align:center;'>" +
-														"Podane hasło jest nieprawidłowe, spróbuj jeszcze raz " +
-														"lub <a class='remember_pass'>Przypomnij hasło</a></div>");
-											}
-										})
-										.fail(function(e){ console.log(e.responseText); });
-								return false;
+								$("#login_user_form").submit();
+								return true;
 							}
-							else if(data==0){
-								var wysokosc=$("#popek").css("height");
-								$("#popek").css("height",wysokosc+50 ,'important');
-
-										$("#fhaslo_errors").append("<div style='text-align:center;'>" +
-												"Podane hasło jest nieprawidłowe, spróbuj jeszcze raz " +
-												"lub <a class='remember_pass'>Przypomnij hasło</a></div>");
-								return false;
+							else
+							{
+								$("#fhaslo_errors").append("<div style='text-align:center;'>" +
+										"Podane hasło jest nieprawidłowe, spróbuj jeszcze raz " +
+										"lub <a class='remember_pass'>Przypomnij hasło</a></div>");
 							}
-							return false;
 						})
 						.fail(function(e){ console.log(e.responseText); });
-			}else {
+						return false;
+					}
+					else if(data==0)
+					{
+						var wysokosc=$("#popek").css("height");
+						$("#popek").css("height",wysokosc+50 ,'important');
+
+						$("#fhaslo_errors").append("<div style='text-align:center;'>" +
+												"Podane hasło jest nieprawidłowe, spróbuj jeszcze raz " +
+												"lub <a class='remember_pass'>Przypomnij hasło</a></div>");
+						return false;
+					}
+					return false;
+				})
+				.fail(function(e){ console.log(e.responseText); });
+			} 
+			else 
+			{
 				var wysokosc=$("#popek").css("height");
 				$("#popek").css("height",wysokosc+50 ,'important');
 				$("#fmail_errors").append("<div style='text-align:center;'>" +
@@ -312,8 +301,7 @@ $(document).ready(function(){
 	$("#wyslij_preferencje").on('click',function(){
 
 		var zawartosc=$("#my-events").val();
-		// var czesci=zawartosc.split("\n");
-		console.log("Zawartość: "+zawartosc);
+
 		if(zawartosc!=""){
 			$.ajax({
 				method: "POST",
@@ -323,7 +311,7 @@ $(document).ready(function(){
 				console.log(msg);
 			}).fail(function(e){console.log(e.responseText);});
 		}
-		console.log("Zawartość2: "+$("#shirt_size").val());
+
 		$.ajax({
 			method: "POST",
 			url: "update_profile_additional",
@@ -337,11 +325,11 @@ $(document).ready(function(){
 		}).done(function( msg ) {
 			console.log(msg);
 			$('[data-popup="popup-4"]').fadeOut(350);
-			//window.location="marathons";
+		
 		}).fail(function(e){console.log(e.responseText);});
 		$("#usprawnij_system_podpowiedzi").css("display","none");
 		$('[data-popup="popup-4"]').fadeOut(350);
-		//$("#additional_data_user").submit();
+
 	});
 
 	$("#ustaw").on('click',function(){
@@ -352,14 +340,12 @@ $(document).ready(function(){
 			method: "GET",
 			url: "home_get_past_roads"
 		}).done(function( msg ) {
-			console.log(msg);
-			var roads= JSON.parse(msg);// msg.split(",");
-			var wlasc_roads=[];
-			for(var l=0;l<roads.length;l++) {
+			var roads = JSON.parse(msg);// msg.split(",");
+			var wlasc_roads = [];
+			for(var l=0; l<roads.length; l++) {
 				var roads_detail={value : roads[l], data: roads[l]};
 				wlasc_roads[l]=roads_detail;
 			}
-			console.log(roads);
 			$('#wydarzenia_search2').autocomplete({
 				source: wlasc_roads,
 				select: function (suggestion,ei) {
@@ -367,7 +353,6 @@ $(document).ready(function(){
 					$('#my-events').html($('#my-events').html()+thehtml+"\n");
 				}
 			});
-			console.log("cholera koniec");
 		});
 	});
 
@@ -375,14 +360,12 @@ $(document).ready(function(){
 			method: "GET",
 			url: "get_available_roads"
 		}).done(function( msg ) {
-				console.log(msg);
-				var roads= JSON.parse(msg);// msg.split(",");
+				var roads= JSON.parse(msg);
 				var wlasc_roads=[];
 				for(var l=0;l<roads.length;l++) {
 					var roads_detail={value : roads[l], data: roads[l]};
 					wlasc_roads[l]=roads_detail;
 				}
-				console.log(roads);
 				$('#wydarzenia_search').autocomplete({
 					source: wlasc_roads,
 					select: function (suggestion,ei) {
@@ -390,7 +373,6 @@ $(document).ready(function(){
 						$('#udzial_w_wydarzeniach').html($('#udzial_w_wydarzeniach').html()+thehtml+"\n");
 					}
 				});
-				console.log("cholera koniec");
 			});
 
 }).showUp('.navbar', {

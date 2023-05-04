@@ -3,12 +3,10 @@
  */
    $(document).ready(function(){
 
-
-
        $('#przejdz_dalej').click(function(){
-           var numer_karty=$('#numer_karty').val();
-           var data_waznosci=$('#data_waznosci').val();
-           var kod_karty=$("#cvv_cvc").val();
+           var numer_karty = $('#numer_karty').val();
+           var data_waznosci = $('#data_waznosci').val();
+           var kod_karty = $("#cvv_cvc").val();
            $("#error_codecard").html("");
            if(numer_karty !='' && data_waznosci !='')
            {

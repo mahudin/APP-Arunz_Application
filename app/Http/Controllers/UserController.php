@@ -41,17 +41,18 @@ class UserController extends Controller
      */
     public function store($request)
     {
-	$params = ['email','password','uname','surname','sex','phone','city',
-        'walking_for','walking_count','walking_because','nr_card','date_card','join_date','is_online'];
-	$values='';
-	for($i=0;$i<=13;$i++) $values.=$i!=13 ? $request->input($params[$i]).',':$request->input($params[$i]);
-        $wyn=DB::insert('INSERT INTO users
-(email,password,uname,surname,sex,phone,city,walking_for,walking_count,walking_because,nr_card,date_card,join_date,is_online)
-	VALUES('.explode(',',$values).')') ? true:false;
-	return Response::json(array(
-        'error' => false,
-        'urls' => 'true'),
-        200);
+		$params = ['email','password','uname','surname','sex','phone','city',
+			'walking_for','walking_count','walking_because','nr_card','date_card','join_date','is_online'];
+		$values='';
+		for($i=0; $i<=13; $i++) $values.= $i!=13 ? $request->input($params[$i]).',':$request->input($params[$i]);
+	
+		$wyn=DB::insert('INSERT INTO users
+		(email,password,uname,surname,sex,phone,city,walking_for,walking_count,walking_because,nr_card,date_card,join_date,is_online)
+		VALUES('.explode(',',$values).')') ? true : false;
+		return Response::json(array(
+			'error' => false,
+			'urls' => 'true'),
+			200);
     }
 
     /**
@@ -62,8 +63,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-       $wyn=DB::select('SELECT * FROM users where id=:id',['id'=>$id]);
-	return Response::json(array('error' => false, 'urls' => $wyn[0]),200);
+		$wyn = DB::select('SELECT * FROM users where id=:id',['id' => $id]);
+		return Response::json(array('error' => false, 'urls' => $wyn[0]),200);
     }
 
     /**
