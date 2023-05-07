@@ -74,7 +74,7 @@ class HomeController extends Controller
     public function update_profile(Request $request)
     {
         $dane=[];
-        $id=$request->input('idu');
+        $id = $request->input('idu');
         $dane['email'] = $request->input('email');
         $dane['password'] = md5($request->input('haslo'));
         $dane['uname'] = $request->input('uname');
@@ -82,9 +82,9 @@ class HomeController extends Controller
         $dane['sex'] = $request->input('male')=="male"?1:2;
         $dane['phone'] = $request->input('phone');
         $dane['city'] = $request->input('city');
-        $dane['walking_for'] = "";//$request->session()->get('guest.biegam_od')[0];
-        $dane['walking_count'] = "";//$request->session()->get('guest.miesiecznie_przebiegam')[0];
-        $dane['walking_because'] = "";//$request->session()->get('guest.biegam_poniewaz')[0];
+        $dane['walking_for'] = "";
+        $dane['walking_count'] = "";
+        $dane['walking_because'] = "";
         $dane['nr_card'] = $request->input('nr_card');
         $dane['date_card'] = $request->input('data_waznosci');
         $dane['uname_card'] = $request->input('name_card');
@@ -102,28 +102,30 @@ class HomeController extends Controller
     {
         $dane = [];
         $id = $request->input('idu');
-        $dane['walking_for'] = $request->input('walking_for');//$request->session()->get('guest.biegam_od')[0];
-        $dane['walking_count'] = $request->input('walking_count');//$request->session()->get('guest.miesiecznie_przebiegam')[0];
-        $dane['walking_because'] = $request->input('walking_because');//$request->session()->get('guest.biegam_poniewaz')[0];
+        $dane['walking_for'] = $request->input('walking_for');
+        $dane['walking_count'] = $request->input('walking_count');
+        $dane['walking_because'] = $request->input('walking_because');
         $dane['shirt_size'] = $request->input('shirt_size');
 
-        User::update_profile_additional($dane,$id);
+        User::update_profile_additional($dane, $id);
         return 1;
     }
 
-    public function change_password(Request $request){
+    public function change_password(Request $request)
+	{
         User::change_password(md5($request->input('haslo')),$request->input('idu'));
         return redirect('/');
     }
 
-    public function set_my_roads(Request $request){
+    public function set_my_roads(Request $request)
+	{
         $maratony = $request->input("dane");
         $trasy = explode("\n",$maratony);
         $roads = Roads::get_marathons_all();
         $user = Auth::user();
         foreach ($trasy as $trasa)
 		{
-            Roads::add_user_to_road($trasa,$user->id);
+            Roads::add_user_to_road($trasa, $user->id);
         }
 		
         return 1;
@@ -131,11 +133,11 @@ class HomeController extends Controller
 
     public function get_past_roads()
     {
-        $roads=Roads::get_past_marathons_all();
+        $roads = Roads::get_past_marathons_all();
         $roads_for_ee = [];
         foreach ($roads as $road)
 		{
-            $roads_for_ee[]=$road->title;
+            $roads_for_ee[] = $road->title;
         }
 
         return Json::encode($roads_for_ee);
@@ -143,7 +145,7 @@ class HomeController extends Controller
 
     public function get_available_roads()
     {
-        $roads=Roads::get_marathons_all();
+        $roads = Roads::get_marathons_all();
         $roads_for_ee = [];
         foreach ($roads as $road)
 		{

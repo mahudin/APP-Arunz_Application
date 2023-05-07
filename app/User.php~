@@ -4,6 +4,7 @@ namespace App;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DB;
+
 class User extends Authenticatable
 {
     /**
@@ -24,21 +25,26 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public static function authenticate_user($array)
+    public static function authenticate_user(array $array): int
 	{
 		$dane=DB::select('SELECT id FROM arunz.users where "login"=:login and "password"=:password',
 				['login'=>$array['login'],'password'=>$array['password']]);
 		return $dane ? 1:0;
 	}
 
-    public static function add_user($request)
+    public static function add_user(array $request): string
     {
-	$params = ['login','password','first_name','last_name','email','birth_date','sex','age','city','telephone','join_date'];
-	$values='';
-	for($i=0;$i<11;$i++) $values.=$i<11 ? '\''$request[$params[$i]].'\',':$request[$params[$i]];
-	$values.='true';
-        DB::insert('INSERT INTO arunz.users (login,password,first_name,last_name,email,birth_date,sex,age,city,telephone,join_date)
-	VALUES('.$values.') ');
-	return Response::json(array('error' => false,'urls' => 'true'),200);	
+		$params = ['login','password','first_name','last_name','email','birth_date','sex','age','city','telephone','join_date'];
+		$values = '';
+		for ($i=0; $i<11; $i++) $values.= $i<11 ? '\''$request[$params[$i]].'\',':$request[$params[$i]];
+		
+		$values.='true';
+		DB::insert('INSERT INTO arunz.users (login,password,first_name,last_name,email,birth_date,sex,age,city,telephone,join_date)
+			VALUES('.$values.') ');
+			
+		return Response::json(
+			array('error' => false, 
+				  'urls' => 'true'
+			), 200);	
     }
 }

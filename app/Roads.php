@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Roads extends Model
 {
-    public static function get_marathons_user(string $name)
+    public static function get_marathons_user(string $name): array
     {
 		$dane = DB::select('SELECT * FROM marathons
 				JOIN users_of_marathons ON users_of_marathons.idm=marathons.id
@@ -19,7 +19,7 @@ class Roads extends Model
 		return $dane;
     }
 
-    public static function get_marathons_all_available()
+    public static function get_marathons_all_available(): array
     {
 		$dane = DB::select('SELECT * FROM marathons 
 				JOIN roads_of_marathons ON roads_of_marathons.idm=marathons.idm
@@ -28,13 +28,13 @@ class Roads extends Model
 		return $dane;
     }
 
-    public static function get_marathons_all()
+    public static function get_marathons_all(): array
     {
         $dane = DB::select('SELECT * FROM marathons');
         return $dane;
     }
 
-    public static function get_past_marathons_all()
+    public static function get_past_marathons_all(): array
     {
         $dane = DB::select('SELECT * FROM marathons where date_term < :date_term and time_term < :time_term ',
             ['date_term'=>date("Y-m-d"),'time_term'=>date("H:i:s")]);
@@ -42,7 +42,7 @@ class Roads extends Model
     }
 
 
-    public static function add_user_to_road(string $trasa, int $id)
+    public static function add_user_to_road(string $trasa, int $id): int
     {
         $dane1 = DB::select('SELECT * FROM marathons where title=:trasa ',['trasa'=>$trasa]);
         foreach($dane1 as $dana1)

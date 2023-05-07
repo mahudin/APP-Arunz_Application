@@ -26,25 +26,25 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public static function is_after_attention_more_information(string $email)
+    public static function is_after_attention_more_information(string $email): int
     {
         $dane = DB::select('SELECT is_online FROM users where "email"=:email ',['email'=>$email]);
         return isset($dane[0]->is_online)? 1:0;
     }
 
-    public static function check_by_login(string $array)
+    public static function check_by_login(string $array): int
     {
 		$dane = DB::select('SELECT id FROM users where "email"=:login LIMIT 1', ['login'=>$array]);
 		return $dane ? 1:0;
     }
 
-    public static function authenticate_user(array $array)
+    public static function authenticate_user(array $array): int
     {
 		$dane = DB::select('SELECT id FROM users WHERE email=:login AND password=:password ',['login'=>$array['email'],'password'=>$array['password']]);
 		return $dane ? 1:0;
     } 
 
-    public static function add_user(array $post)
+    public static function add_user(array $post): int
     {
 		$params = ['email','password','uname','surname','sex','phone','zip_code','state','city','street','code_country','walking_for','walking_count','walking_because'
 			,'nr_card','date_card','uname_card','surname_card','cvv_cvc','join_date','ip_adress','is_online'];
@@ -59,7 +59,7 @@ class User extends Authenticatable
 		return true;	
     }
 
-    public static function update_profile_user(array $dane, int $id)
+    public static function update_profile_user(array $dane, int $id): void
 	{
         DB::update("UPDATE users
         ".(isset($dane['email'])? "SET email=\"".$dane['email']."\" ":"").   "
@@ -75,7 +75,7 @@ class User extends Authenticatable
         ");
     }
 
-    public static function update_profile_additional(array $dane, int $id)
+    public static function update_profile_additional(array $dane, int $id): void
 	{
         DB::update("UPDATE users
         ".(isset($dane['walking_because'])? "SET email=\"".$dane['walking_because']."\" ":""). "
@@ -88,25 +88,26 @@ class User extends Authenticatable
     }
 
 	
-    public static function get_user_by_email($email)
+    public static function get_user_by_email($email): array
     {
 	    return DB::select('SELECT * FROM users WHERE email=:email
         ORDER BY id LIMIT 1 ',['email'=>$email]);
     }
 
-    public static function get_user_by_email_and_password(string $email, string $pass)
+    public static function get_user_by_email_and_password(string $email, string $pass): array
     {
         return DB::select('SELECT * FROM users WHERE email=:email and
         password=:pass ORDER BY id LIMIT 1 ',['email'=>$email,'pass'=>$pass]);
     }
 
-    public static function drop_account(int $id)
+    public static function drop_account(int $id): void
     {
         DB::delete('DELETE FROM users where id=:id',['id'=>$id]);
         DB::delete('DELETE FROM users_of_marathons where idu=:id',['id'=>$id]);
     }
 
-    public static function change_password(string $haslo, int $id){
+    public static function change_password(string $haslo, int $id): void
+	{
         DB::update("UPDATE users SET password=\"".$haslo."\"  WHERE id=".$id." ");
     }
 
