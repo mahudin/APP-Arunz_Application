@@ -124,7 +124,7 @@ class HomeController extends Controller
         $roads = Roads::get_marathons_all();
         $user = Auth::user();
         foreach ($trasy as $trasa)
-		{
+        {
             Roads::add_user_to_road($trasa, $user->id);
         }
 		
@@ -136,7 +136,7 @@ class HomeController extends Controller
         $roads = Roads::get_past_marathons_all();
         $roads_for_ee = [];
         foreach ($roads as $road)
-		{
+        {
             $roads_for_ee[] = $road->title;
         }
 
