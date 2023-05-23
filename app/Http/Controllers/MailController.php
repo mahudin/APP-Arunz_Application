@@ -10,7 +10,8 @@ use App\Http\Requests;
 class MailController extends Controller
 {
 
-    public function Tresc($login,$haslo,$token){
+    public function Tresc(string $login, string $haslo, string $token)
+	{
 
         $tresc = '
 	    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -53,31 +54,29 @@ class MailController extends Controller
         return $tresc ;
     }
 
-    public function WyslijMajlPrzypominajacy($do,$login,$haslo,$token){
+    public function WyslijMajlPrzypominajacy(string $do, string $login, string $haslo, string $token)
+	{
 
         $tytul = 'Arunz - Przypomnienie hasła';
 
         require "classes/class.phpmailer.php";
-        require "classes/class.smtp.php"; // optional, gets called from within class.phpmailer.php if not already loaded
+        require "classes/class.smtp.php"; 
 
-        $mail             = new PHPMailer();
+        $mail = new PHPMailer();
 
-        $body             = $this->Tresc($login,$haslo,$token);
+        $body = $this->Tresc($login,$haslo,$token);
 
-        $mail->IsSMTP(); // telling the class to use SMTP
-        $mail->SMTPDebug  = 1;                     // enables SMTP debug information (for testing)
-        // 1 = errors and messages
-        // 2 = messages only
+        $mail->IsSMTP(); 
+        $mail->SMTPDebug  = 1;                    
+       
         $mail->CharSet = "UTF-8";
-        $mail->SMTPAuth   = true;                  // enable SMTP authentication
+        $mail->SMTPAuth   = true;                  
         $mail->SMTPSecure = "tls";
-        $mail->Host       = "arunz.eu"; // sets the SMTP server
-//$mail->Port       = 26;                    // set the SMTP port for the GMAIL server
-        $mail->Username   = "info@arunz.eu"; // SMTP account username
-        $mail->Password   = "Iamnotcheater123";        // SMTP account password
+        $mail->Host       = "arunz.eu"; 
+        $mail->Username   = "info@arunz.eu"; 
+        $mail->Password   = "Iamnotcheater123";        
 
         $mail->SetFrom('info@arunz.eu', 'arunz.eu');
-        //$mail->AddReplyTo("kontakt@arunz.eu","arunz.eu");
 
         $mail->Subject    = $tytul;
 
@@ -85,7 +84,6 @@ class MailController extends Controller
 
         $mail->AddAddress($do);
         $mail->AddBCC('info@arunz.eu');
-//$mail->AddBCC('maciej.stachecki@westhill.pl');
 
         if(!$mail->Send()) {
             return false;
@@ -114,7 +112,8 @@ class MailController extends Controller
         }
     }
 
-    public function check_token_remind_pass($id){
+    public function check_token_remind_pass($id)
+	{
 
         $token = Mail::get_password_reminder_by_token($id);
         if(isset($token[0]) && $token[0]->passkey == $id){
