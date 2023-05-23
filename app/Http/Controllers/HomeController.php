@@ -120,8 +120,8 @@ class HomeController extends Controller
     public function set_my_roads(Request $request)
 	{
         $maratony = $request->input("dane");
-        $trasy = explode("\n",$maratony);
-        $roads = Roads::get_marathons_all();
+        $trasy = explode("\n", $maratony);
+      
         $user = Auth::user();
         foreach ($trasy as $trasa)
         {
